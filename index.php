@@ -7,18 +7,27 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <link rel="stylesheet" href="style.css">
+
         <title>NOTEBLOCK</title>
     </head>
     <body>
-        <h1>NOTEBLOCK</h1>
+        <div class="noteblockAll">
+            <span class="noteblockTop">
+                <h1>NOTEBLOCK</h1>
+            </span>
 
-        <?php
-            echo "Das ist ein Text aus PHP";
-        ?>
+            <table>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+            </table>
 
-        <script>
-            console.log('noteblock js script part');
-        </script>
-    
+        </div>
     </body>
 </html>
