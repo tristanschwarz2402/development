@@ -7,7 +7,7 @@ body {
 }
 
 .noteblockAll {
-    height: 500px;
+    height: auto;
     width: 75%;
     background-color: white;
     display: block;
@@ -16,6 +16,7 @@ body {
     margin-bottom: auto;
     border-radius: 25px;
     justify-content: center;
+    padding-bottom: 5%;
 }
 
 .noteblockTop {
@@ -32,7 +33,28 @@ h1 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-table {
-    border: solid black;
+.getNoteInput {
+    bottom: 0;
+    left: 0; /* Optional, um das Element von links zu positionieren */
     display: flex;
+    align-items: center;
+    justify-content: center; /* Oder justify-content: flex-end; */
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.noteContainer {
+    display: flex;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 10px;
+}
+
+table {
+    border: solid thin black;
+    width: 100%;
 }
