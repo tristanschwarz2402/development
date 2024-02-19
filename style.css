@@ -55,6 +55,19 @@ h1 {
 }
 
 table {
-    border: solid thin black;
     width: 100%;
+}
+
+.noteEntry {
+    width: 100%;
+    border: none;
+}
+
+.button {
+    background-color: #ffd900;
+    border: none;
+}
+
+.button:hover{
+    background-color: #ffd999;
 }

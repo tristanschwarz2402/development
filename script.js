@@ -1,13 +1,14 @@
 function displayInputNote(event) {
     if (event.key == 'Enter') {
         const inputNoteValue = event.target.value;
-        insertIntoTable(inputNoteValue);
         let loadedStorageIndex = getLocalStorageLastIndex();
 
         if (loadedStorageIndex === undefined) {
             loadedStorageIndex = 1;
         }
-        
+
+        insertIntoTable(inputNoteValue, loadedStorageIndex);
+
         localStorage.setItem(loadedStorageIndex, inputNoteValue);
         document.getElementById('inputNote').value = '';
     }
@@ -20,13 +21,14 @@ function loadLocalStorage() {
         let storageIndex = localStorage.key(localStorageIndex);
         console.log(storageIndex + ':' + localStorage.getItem(storageIndex));
         console.log('storageIndex: ' + storageIndex);
-        insertIntoTable(localStorage.getItem(storageIndex));
+        insertIntoTable(localStorage.getItem(storageIndex),storageIndex);
     }
 }
 
-function insertIntoTable(insertTable) {
+function insertIntoTable(insertTable, localStorageId) {
     console.log('load Value:' + insertTable + ' into Table...');
-    const createTableNoteContainer = '<table><tr><td>' + insertTable + '</td></tr></table>';
+    const fullTableId = "Entry" + localStorageId;
+    const createTableNoteContainer = '<table id="' + fullTableId + '"><tr><td><input class="noteEntry" type="text" value="' + insertTable + '" onkeypress="updateEntry(event, ' + localStorageId + ')"></td><td align="right"><button onclick="removeEntry(' + localStorageId + ')" class="button">X</button></td></tr></table>';
     document.getElementById('noteContainer').innerHTML += createTableNoteContainer;
 }
 
@@ -35,6 +37,18 @@ function getLocalStorageLastIndex() {
         localStorageIndex++;
         return localStorageIndex;
     } 
+}
+
+function removeEntry(localStorageId) {
+    const fullTableId = "Entry" + localStorageId;
+    document.getElementById(fullTableId).innerHTML = '';
+    localStorage.removeItem(localStorageId);
+}
+
+function updateEntry(event, localStorageId) {
+    if (event.key == 'Enter') {
+        localStorage.setItem(localStorageId, event.target.value);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
