@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBPHP</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -15,17 +17,17 @@
 
     <form action="fillDb.php" method="post">
         <p>
-            <label for="testInput">testInput</label>
-            <input type="text" name="testInput" id="testInput">
-        </p>
-        <p>
+            <input type="text" name="noteEntry" id="noteEntry">
             <input type="submit">
         </p>
     </form>
 
-    <?php
-        connectToDb();
-    ?>
+    <div class="noteblockBody">
+        <?php
+            $dbConnection = connectToDb();
+            loadTableFromDB($dbConnection);
+        ?>
+    </div>
 
 </body>
 </html>
