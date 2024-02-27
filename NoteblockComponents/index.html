@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html lang="de">
+    <head>
+        <meta name="author" content="Tristan Schwarz">
+        <meta name="description" content="Online Notizblock">
+        <meta name="keywords" content="noteblock, online noteblock, Notizblock, Online Notizblock">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/png" href="noteblockfav.png">
+
+        <script type="module" src="script.js"></script>
+
+        <title>NoteBlock</title>
+    </head>
+    <body>
+        <div class="noteblockAll">
+            <span class="noteblockTop">
+                <h1>NOTEBLOCK</h1>
+            </span>
+            <input class='getNoteInput' placeholder="write down your notes..." type="Text" id="inputNote" onkeypress="displayInputNote(event)">
+
+            <div id="noteContainer" class="noteContainer"> 
+            </div>
+            <button onclick="window.location.href='/index.html';" class="backLink">Zum Start...</button>
+            <div id="test">
+
+            </div>
+        </div>
+    </body>
+</html>
