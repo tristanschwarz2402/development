@@ -7,7 +7,6 @@ function storeNumber(number) {
     // parse float weil es könnte ja auch eine Kommazahl sein.
     number = parseFloat(number);
     numbersToCalculate.push(number);
-    document.getElementById("showNumbers").innerHTML = "";
     // console.log(numbersToCalculate);
 }
 
@@ -15,6 +14,7 @@ window.loadOperation = function (operation) {
     const numberToStore = document.getElementById("showNumbers").innerHTML;
     storeNumber(numberToStore);
     operationToCalculate = operation;
+    document.getElementById("showNumbers").innerHTML = "";
 }
 
 window.doCalculate = function () {
