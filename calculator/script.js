@@ -1,86 +1,68 @@
-window.loadIntoShowNumbers = function (pushButton) {
-    // console.log(pushButton);
-    document.getElementById("showNumbers").innerHTML += pushButton;
-}
-
-function storeNumber(number) {
-    // parse float weil es könnte ja auch eine Kommazahl sein.
-    number = parseFloat(number);
-    numbersToCalculate.push(number);
-    // console.log(numbersToCalculate);
-}
-
-window.loadOperation = function (operation) {
-    const numberToStore = document.getElementById("showNumbers").innerHTML;
-    storeNumber(numberToStore);
-    operationToCalculate = operation;
-    document.getElementById("showNumbers").innerHTML = "";
-}
-
-window.doCalculate = function () {
-
-    // aktuelle Zahl vom Display holen
-    let number = document.getElementById("showNumbers").innerHTML;
-    storeNumber(number);
-
-    let i = 0;
-    let result = 0;
-
-    // console.log(numbersToCalculate);
-
-    if (operationToCalculate === "+") {
-        // console.log('addieren');
-        while (i <= numbersToCalculate.length - 1) {
-            result += numbersToCalculate[i];
-            i++;
-        }
-    } else if (operationToCalculate === "-") {
-        // console.log('subtrahieren');
-        while (i <= numbersToCalculate.length - 1) {
-            if (i === 0) {
-                result = numbersToCalculate[i];
-            } else {
-                result -= numbersToCalculate[i];
-            }
-            i++;
-        }
-    } else if (operationToCalculate === "*") {
-        // console.log('multiplizieren');
-        while (i <= numbersToCalculate.length - 1) {
-            if (i === 0) {
-                result = numbersToCalculate[i];
-            } else {
-                result *= numbersToCalculate[i];
-            }
-            i++;
-        }
-    } else {
-        // console.log('dividieren');
-        while (i <= numbersToCalculate.length - 1) {
-            if (i === 0) {
-                result = numbersToCalculate[i];
-            } else {
-                result /= numbersToCalculate[i];
-            }
-            i++;
-        }
+class Calculator {
+    constructor() {
+        this.numbersToCalculate = [];
+        this.operationToCalculate = "";
+        this.displayElement = document.getElementById("showNumbers");
+        this.setupEventListeners();
     }
-    document.getElementById("showNumbers").innerHTML = result;
+
+    setupEventListeners() {
+        document.addEventListener("click", (event) => {
+            if (event.target.matches(".number")) {
+                this.appendToDisplay(event.target.innerText);
+            } else if (event.target.matches(".operator")) {
+                this.storeNumber();
+                this.operationToCalculate = event.target.innerText;
+                this.clearDisplay();
+            } else if (event.target.matches(".calculate")) {
+                this.storeNumber();
+                this.calculate();
+            } else if (event.target.matches(".clear-all")) {
+                this.clearAll();
+            } else if (event.target.matches(".clear-current")) {
+                this.clearDisplay();
+            }
+        });
+    }
+
+    appendToDisplay(value) {
+        this.displayElement.innerText += value;
+    }
+
+    clearDisplay() {
+        this.displayElement.innerText = "";
+    }
+
+    storeNumber() {
+        let number = parseFloat(this.displayElement.innerText);
+        this.numbersToCalculate.push(number);
+    }
+
+    calculate() {
+        let result = this.numbersToCalculate.reduce((acc, curr) => {
+            switch (this.operationToCalculate) {
+                case "+":
+                    return acc + curr;
+                case "-":
+                    return acc - curr;
+                case "*":
+                    return acc * curr;
+                case "/":
+                    return acc / curr;
+                default:
+                    return acc;
+            }
+        }, 0);
+        this.displayElement.innerText = result;
+    }
+
+    clearAll() {
+        this.clearDisplay();
+        this.numbersToCalculate = [];
+        this.operationToCalculate = "";
+        alert("Clear All");
+    }
 }
 
-window.clearAll = function () {
-    document.getElementById("showNumbers").innerHTML = "";
-    numbersToCalculate = [];
-    operationToCalculate = "";
-    alert("clear All");
-}
-
-window.clearCurrent = function () {
-    document.getElementById("showNumbers").innerHTML = "";
-}
-
-// erstellen einer globalen Variable um meine Zahlen darin zu speichern
-let numbersToCalculate = [];
-let operationToCalculate;
-
-
+// Initialisierung des Taschenrechners
+const calculator = new Calculator();
