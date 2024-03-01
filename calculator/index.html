@@ -7,12 +7,51 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>CALCI</title>
 
-    <title>Document</title>
+    <script type="module" src="/calculator/script.js"></script>
+
 </head>
 <body>
     <div name="backgroundGradient" id="backgroundGradient" class="flex h-screen bg-gradient-to-br from-pink-600 to-purple-600 opacity-70 justify-center items-center">
-        <div name="calcBox" id="calcBox" class="flex h-3/6 bg-white w-72 min-w-72">
-            Test
+        <div name="calcBox" id="calcBox" class="flex h-auto pb-7 bg-black bg-opacity-70 w-72 min-w-72 rounded-xl flex-col">
+            <div name="showNumbers" id="showNumbers" class="flex bg-black w-3/4 h-12 text-white justify-end mt-7 rounded-xl justify-self-center ml-auto mr-auto items-center pr-4">
+                
+            </div>
+
+            <div id="operatorBox" name="operatorBox" class="flex flex-col justify-center items-center">
+                <div id="row1" name="row1" class="flex mt-7 ml-auto mr-auto w-3/4 justify-between">
+                    <button class="bg-white flex-1 m-2 p-2">C</button>
+                    <button class="bg-white flex-1 m-2 p-2">+/-</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadOperation('%')">%</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers(7)">/</button>
+                </div>
+    
+                <div id="row2" name="row2" class="flex mt-7 ml-auto mr-auto w-3/4 justify-between">
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers(7)">7</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers(8)">8</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers(9)">9</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadOperation('*')">*</button>
+                </div>
+    
+                <div id="row3" name="row3" class="flex mt-7 ml-auto mr-auto w-3/4 justify-between">
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers(4)">4</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers(5)">5</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers(6)">6</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadOperation('-')">-</button>
+                </div>
+    
+                <div id="row4" name="row4" class="flex mt-7 ml-auto mr-auto w-3/4 justify-between">
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers(1)">1</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers(2)">2</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers(3)">3</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadOperation('+')">+</button>
+                </div>
+    
+                <div id="row5" name="row5" class="flex mt-7 ml-auto mr-auto w-3/4 justify-between">
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers(0)">0</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="loadIntoShowNumbers('.')">.</button>
+                    <button class="bg-white flex-1 m-2 p-2" onclick="doCalculate()">=</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
